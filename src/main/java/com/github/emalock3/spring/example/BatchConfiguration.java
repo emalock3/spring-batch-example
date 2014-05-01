@@ -39,7 +39,7 @@ public class BatchConfiguration {
         writer.setMethodName("save");
         return steps.get("genEmployeesStep")
                 .<Employee, Employee> chunk(10)
-                .reader(new ListItemReader(IntStream.range(0, 100)
+                .reader(new ListItemReader<Employee>(IntStream.range(0, 100)
                         .mapToObj(i -> new Employee(null, "foo-" + i))
                         .collect(Collectors.toList())))
                 .writer(writer)
